@@ -2,6 +2,17 @@
 
 orbpf-ko - The orbpf (eBPF+) Linux kernel module from OpenResty Inc.
 
+# Table of Contents
+
+* [Name](#name)
+* [Description](#description)
+* [How to build](#how-to-build)
+* [Load the module](#load-the-module)
+* [Unload the module](#unload-the-module)
+* [Run sanity tests](#run-sanity-tests)
+* [Copyright](#copyright)
+* [License](#license)
+
 # Description
 
 This Linux/Android kernel module is an enhanced version of the eBPF runtime
@@ -12,9 +23,9 @@ It is also known as eBPF+.
 See our [Ylang blog post series](https://blog.openresty.com/en/ylang-intro-part1/)
 for more details.
 
-Most of the safety and halting guarentees are implemented in higher level
-compilers like Ylang at compile time instead of in a fatty, slow and limited
-in-kernel verifier.
+Some of the safety and halting guarentees are implemented in higher level
+compilers like Ylang at compile time instead of relying on the in-kernel
+verifier at load time.
 
 # How to build
 
@@ -31,11 +42,15 @@ make -C $KERNEL_PREFIX M=$PWD modules -j$(nproc)
 sudo insmod orbpf.ko
 ```
 
+[Back to TOC](#table-of-contents)
+
 # Unload the module
 
 ```bash
 sudo rmmod orbpf
 ```
+
+[Back to TOC](#table-of-contents)
 
 # Run sanity tests
 
@@ -43,6 +58,8 @@ sudo rmmod orbpf
 gcc -o test test.c
 sudo ./test
 ```
+
+[Back to TOC](#table-of-contents)
 
 # Copyright
 
@@ -52,6 +69,11 @@ Copyright (C) by Linux Kernel Contributors.
 
 Copyright (c) 2023 Kirk Nickish and https://github.com/823984418
 
+[Back to TOC](#table-of-contents)
+
 # License
 
 GPL 2.0
+
+[Back to TOC](#table-of-contents)
+
