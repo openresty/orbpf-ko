@@ -1,0 +1,42 @@
+/* Copyright (C) by OpenResty Inc. All rights reserved. */
+ 
+
+
+
+
+
+
+
+
+
+
+
+#if 1
+#ifdef ORBPF_OVERRODE_CONFIG_BPF_JIT_ALWAYS_ON
+#undef ORBPF_OVERRODE_CONFIG_BPF_JIT_ALWAYS_ON
+#define CONFIG_BPF_JIT_ALWAYS_ON 1
+#endif
+
+
+
+
+
+
+#include "orbpf_config_end_raw.h"
+#endif  
+
+ 
+#ifdef ORBPF_OVERRODE_CONFIG_DEBUG_INFO_BTF
+#undef ORBPF_OVERRODE_CONFIG_DEBUG_INFO_BTF
+#define CONFIG_DEBUG_INFO_BTF 1
+#endif
+
+#ifdef ORBPF_OVERRODE_CONFIG_DEBUG_INFO_BTF_MODULES
+#undef ORBPF_OVERRODE_CONFIG_DEBUG_INFO_BTF_MODULES
+#define CONFIG_DEBUG_INFO_BTF_MODULES 1
+#endif
+
+#ifdef ORBPF_OVERRODE_CONFIG_MEMCG_KMEM
+#undef ORBPF_OVERRODE_CONFIG_MEMCG_KMEM
+#define CONFIG_MEMCG_KMEM 1
+#endif
