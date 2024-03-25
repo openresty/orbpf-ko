@@ -1,16 +1,16 @@
 /* Copyright (C) by OpenResty Inc. All rights reserved. */
- 
+
 
 #include <linux/fs.h>
 #include <linux/anon_inodes.h>
 #include <linux/filter.h>
 #include <linux/bpf.h>
-#include <linux/orbpf_config_begin.h>  
+#include <linux/orbpf_config_begin.h>
 
 struct bpf_iter_target_info {
 	struct list_head list;
 	const struct bpf_iter_reg *reg_info;
-	u32 btf_id;	 
+	u32 btf_id;
 };
 
 struct bpf_iter_link {
@@ -32,10 +32,10 @@ struct bpf_iter_priv_data {
 static struct list_head targets = LIST_HEAD_INIT(targets);
 static DEFINE_MUTEX(targets_mutex);
 
- 
+
 static DEFINE_MUTEX(link_mutex);
 
- 
+
 static atomic64_t session_id;
 
 static int prepare_seq_file(struct file *file, struct bpf_iter_link *link,
@@ -77,7 +77,7 @@ static bool bpf_iter_support_resched(struct seq_file *seq)
 	return iter_priv->tinfo->reg_info->feature & BPF_ITER_RESCHED;
 }
 
- 
+
 #define MAX_ITER_OBJECTS	1000000
 
 
@@ -133,7 +133,7 @@ static ssize_t bpf_seq_read(struct file *file, char __user *buf, size_t size,
 
 	err = seq->op->show(seq, p);
 	if (err > 0) {
-		
+
 
 
 		bpf_iter_dec_seq_num(seq);
@@ -163,7 +163,7 @@ static ssize_t bpf_seq_read(struct file *file, char __user *buf, size_t size,
 		if (IS_ERR_OR_NULL(p))
 			break;
 
-		 
+
 		bpf_iter_inc_seq_num(seq);
 
 		if (seq->count >= size)
@@ -198,7 +198,7 @@ static ssize_t bpf_seq_read(struct file *file, char __user *buf, size_t size,
 	}
 stop:
 	offs = seq->count;
-	 
+
 	seq->op->stop(seq, p);
 	if (!p) {
 		if (!seq_has_overflowed(seq)) {
@@ -668,12 +668,6 @@ int bpf_iter_run_prog(struct bpf_prog *prog, void *ctx)
 	ret = BPF_PROG_RUN(prog, ctx);
 	migrate_enable();
 	rcu_read_unlock();
-
-	
-
-
-
-
 
 	return ret == 0 ? 0 : -EAGAIN;
 }
